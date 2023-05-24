@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import axios from 'axios';
-import {Provider, useSelector, useDispatch} from 'react-redux';
-import store, {socketActions, createTodo, fetchTodos, fetchCategories} from './store';
-import {Link, HashRouter, Routes, Route} from 'react-router-dom';
+import { Provider, useSelector, useDispatch } from 'react-redux';
+import store, { socketActions, createTodo, fetchTodos, fetchCategories } from './store';
+import { Link, HashRouter, Routes, Route } from 'react-router-dom';
 
 import Categories from './Categories';
 import Todos from './Todos';
@@ -14,7 +14,7 @@ import Search from './Search';
 
 
 function App() {
-    const {todos, categories} = useSelector(state => state);
+    const { todos, categories } = useSelector(state => state);
     const dispatch = useDispatch();
 
     React.useEffect(() => {
@@ -37,24 +37,26 @@ function App() {
     return (
         <div>
             <nav>
-                <h1><Link to='/'>Acme Todos ({todos.length})!!</Link></h1>
+                <Link id='logo' to='/'>Acme Todos ({todos.length})!!</Link>
                 <Link to='/create'>Create A Todo</Link>
                 {' '}
                 <Link to='/categories/create'>Create A Category</Link>
             </nav>
-            <Routes>
-                <Route path='/' element={<Search/>}/>
-                <Route path='/search/:term' element={<Search/>}/>
-            </Routes>
+            <div class='main'>
+                <Routes>
+                    <Route path='/' element={<Search />} />
+                    <Route path='/search/:term' element={<Search />} />
+                </Routes>
 
-            <Routes>
-                <Route path='/' element={<Todos/>}/>
-                <Route path='/search/:term' element={<Todos/>}/>
-                <Route path='/:id' element={<Todo/>}/>
-                <Route path='/create' element={<TodoCreate/>}/>
-                <Route path='/categories/create' element={<CategoryCreate/>}/>
-            </Routes>
-            <Categories/>
+                <Routes>
+                    <Route path='/' element={<Todos />} />
+                    <Route path='/search/:term' element={<Todos />} />
+                    <Route path='/:id' element={<Todo />} />
+                    <Route path='/create' element={<TodoCreate />} />
+                    <Route path='/categories/create' element={<CategoryCreate />} />
+                </Routes>
+                <Categories />
+            </div>
         </div>
     );
 }
@@ -64,7 +66,7 @@ const root = ReactDOM.createRoot(container);
 root.render(
     <Provider store={store}>
         <HashRouter>
-            <App/>
+            <App />
         </HashRouter>
     </Provider>
 );

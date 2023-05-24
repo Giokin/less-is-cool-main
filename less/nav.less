@@ -1,24 +1,36 @@
 nav{
 
+  display: flex;
   height: @mobileHeight;
   width: 100%;
   position: fixed;
   z-index: 99;
   background-color: @sideColor;
+  border-radius: 100px;
 
   a{
+    padding: 20px;
     text-decoration: none;
     color: black;
+    border-radius: 100px;
+  }
+
+  a:hover{
+    background-color: @hoverColor;
+  }
+
+  #logo{
+    padding: 10px;
+    font-size: 24px;
+    font-weight: bolder;
   }
 
 
-  @media screen and (min-width: @desktop) {
-    height: @desktopHeight;
-  }
+  // @media screen and (min-width: @desktop) {
+  //   height: @desktopHeight;
+  // }
 
   //&:hover{
   //  background-color: #d7001c;
   //}
-
-
 }

@@ -10,7 +10,7 @@ const Todos = ()=> {
   const filtered = todos.filter(todo => !term || todo.name.includes(term));
 
   return (
-    <div>
+    <div id="todoList">
       {
         filtered.length !== todos.length ? (
           <h2>You are filtering { filtered.length } out of { todos.length }</h2>
@@ -21,11 +21,11 @@ const Todos = ()=> {
           filtered.map( todo => {
             const category = categories.find(category => category.id === todo.categoryId);
             return (
-              <li key={ todo.id }>
+              <li class='todoNames' key={ todo.id }>
                 <Link to={`/${todo.id}`}>
-                  { todo.name }
+                  { todo.name.toUpperCase() }
                 </Link>
-                ({ category ? category.name : 'none'})
+                ({ category ? category.name.toUpperCase() : 'none'})
                 <button
                   onClick= {
                     ()=> {
@@ -33,9 +33,9 @@ const Todos = ()=> {
                     }
                   }
                 >
-                x
+                Delete
                 </button>
-                <select
+                <select id='categorySelect'
                   value={ todo.categoryId }
                   onChange = {
                     ev => {
